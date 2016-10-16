@@ -17,11 +17,14 @@ require('electron-debug')();
 
 // prevent window being garbage collected
 let mainWindow;
+let shown = true;
 
 function onClosed() {
 	// dereference the window
 	// for multiple windows store them in an array
 	mainWindow = null;
+  app.hide();
+  shown = false;
 }
 
 function createMainWindow() {
@@ -44,6 +47,10 @@ app.on('window-all-closed', () => {
 	}
 });
 
+app.on('browser-window-blur', () => {
+  shown = false;
+})
+
 app.on('activate', () => {
 	if (!mainWindow) {
 		mainWindow = createMainWindow();
@@ -53,14 +60,17 @@ app.on('activate', () => {
 app.on('ready', () => {
 	mainWindow = createMainWindow();
   let shortcut
-  let shown = true
   if (app.config.globalShortcut) {
     shortcut = electron.globalShortcut.register(app.config.globalShortcut, () => {
       if (shown) {
         app.hide();
         shown = false
       } else {
-        mainWindow.show();
+        if (!mainWindow) {
+          mainWindow = createMainWindow();
+        } else {
+          mainWindow.show();
+        }
         shown = true
       }
     })

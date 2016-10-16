@@ -10,15 +10,16 @@ const requireJSON = (filePath) => {
 };
 
 exports.insertColorGroup = (name) => {
-  const newColorGroup = { name: name, colors: [] }
+  const newColorGroup = { "name": name, "colors": [] }
   cfg.config.colors.unshift(newColorGroup)
 
   try {
-    fs.writeFileSync(cfgPath, cfg)
+    fs.writeFileSync(cfgPath, JSON.stringify(cfg, null, '  '))
   } catch (err) {
     console.log(err)
     throw new Error(`Failed to write config to ${cfgPath}`)
   }
+  console.log("Sucessfully wrote to config")
 }
 
 const load = (str) => {
