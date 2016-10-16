@@ -1,0 +1,52 @@
+{
+  "name": "app",
+  "productName": "App",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "repository": "user/repo",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "scripts": {
+    "test": "xo",
+    "start": "npm run build:bundle && electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all",
+    "build:mac": "electron-packager . --out=dist --platform=darwin --overwrite --asar",
+    "build:bundle": "browserify -t sheetify/transform --node app/root.js -o bundle.js"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "electron-app",
+    "electron"
+  ],
+  "dependencies": {
+    "electron-debug": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.16.3",
+    "browserify": "^13.1.0",
+    "choo": "^3.3.0",
+    "choo-location-electron": "^2.0.1",
+    "devtron": "^1.1.0",
+    "electron": "^1.0.1",
+    "electron-config": "^0.2.1",
+    "electron-packager": "^8.0.0",
+    "sheetify": "^5.1.1",
+    "tachyons": "^4.5.4",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}
