@@ -13,8 +13,7 @@
   "scripts": {
     "test": "xo",
     "start": "npm run build:bundle && electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --all",
-    "build:mac": "electron-packager . --out=dist --platform=darwin --overwrite --asar",
+    "build": "npm run build:bundle && electron-packager . --out=dist --platform=darwin --overwrite --asar",
     "build:bundle": "browserify -t sheetify/transform --node app/root.js -o bundle.js"
   },
   "files": [
