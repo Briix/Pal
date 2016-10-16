@@ -1,6 +1,7 @@
 # Paletto
 
 > :art: Tiny app for managing color palettes
+
 Paletto aims to be a simple and customizable color palette manager/viewer and does exactly and
 only that. On first runs it creates a dotfile in your home directory that will
 hold both your settings and your color palettes. 
@@ -23,7 +24,7 @@ The following settings can be used.
 ### `backgroundColor`
 Background color for the entire app.
 
-Default: `"#FFF"`
+Default: `#FFF`
 
 ### `textColor`
 Text color for the entire app.
