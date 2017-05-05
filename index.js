@@ -6,7 +6,11 @@ const config = require('./config')
 
 config.init()
 
-app.config = config.getConfig()
+var defaultConfig = {
+	hideDock: false
+}
+
+app.config = config.getConfig() || defaultConfig
 global.config = app.config
 global.configFn = config
 
@@ -32,7 +36,6 @@ function createMainWindow() {
 		width: 290,
 		height: 460,
     titleBarStyle: 'hidden-inset',
-    backgroundColor: app.config.backgroundColor
 	});
 
 	win.loadURL(`file://${__dirname}/index.html`);
