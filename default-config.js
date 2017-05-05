@@ -2,6 +2,7 @@
   "config": {
     "backgroundColor": "#333",
     "textColor": "#FFF",
+    "tilesPerLine": 5,
     "colors": [
       {
         "name": "Example color set",

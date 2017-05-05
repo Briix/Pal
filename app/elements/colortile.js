@@ -1,7 +1,9 @@
 var bel = require('bel')
 var copy = require('../utils/copy')
 
-function colorTile (item) {
+function colorTile (item, tilesPerLine) {
+  var tileWidth = Math.floor(100/(tilesPerLine + 1)) // Well this needs to be fixed
+
   function copyHex () {
     copy(item, function () {
       var notification = new Notification('Copied!', {
@@ -13,9 +15,9 @@ function colorTile (item) {
 
   return bel`
     <div
-      class="h2 w2 dim pointer"
+      class="dim pointer"
       id="colortile"
-      style="background-color:${item}"
+      style="background-color: ${item}; width: ${tileWidth}vw; height: ${tileWidth}vw;"
       onclick=${copyHex}>
     </div>
   `

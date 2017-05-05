@@ -15,7 +15,7 @@ function main (state, prev, send) {
               ${colorGroup(item.name)}
               <div class="flex flex-wrap">
                 ${item.colors.map((item) => {
-                  return colorTile(item)
+                  return colorTile(item, config.tilesPerLine)
                 })}
               </div>
             </div>
