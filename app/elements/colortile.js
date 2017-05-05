@@ -1,10 +1,10 @@
-const bel = require('bel')
-const copy = require('../utils/copy')
+var bel = require('bel')
+var copy = require('../utils/copy')
 
-const colorTile = (item) => {
+function colorTile (item) {
   return bel`
     <div
-      class="h2 w2 dim"
+      class="h2 w2 dim pointer"
       id="colortile"
       style="background-color:${item}"
       onclick=${(e) => { copy(item, () => {

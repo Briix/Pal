@@ -1,24 +1,26 @@
-const os = require('os')
-const fs = require('fs')
-const path = require('path')
+var os = require('os')
+var fs = require('fs')
+var path = require('path')
 
-const cfgPath = path.resolve(os.homedir(), '.pal')
-let cfg = {}
+var cfgPath = path.resolve(os.homedir(), '.pal')
+var cfg = {}
 
-const requireJSON = (filePath) => JSON.parse(fs.readFileSync(filePath, "utf8"))
+function requireJSON (filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"))
+}
 
 function configExists (filePath) {
 	return fs.existsSync(filePath)
 }
 
-const load = (str) => {
+function load (str) {
   var _cfg = requireJSON(str)
 
   cfg = _cfg
   return true
 }
 
-exports.init = () => {
+exports.init = function () {
 	if (configExists(cfgPath)) {
 		try {
 			load(cfgPath)

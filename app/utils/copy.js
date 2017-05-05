@@ -1,4 +1,4 @@
-const copy = (text, cb) => {
+function copy (text, cb) {
   var doc = document;
   parent = doc.body;
   var el = doc.createElement('input');

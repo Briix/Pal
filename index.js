@@ -1,8 +1,8 @@
 'use strict';
-const electron = require('electron');
+var electron = require('electron');
 
-const app = electron.app;
-const config = require('./config')
+var app = electron.app;
+var config = require('./config')
 
 config.init()
 
@@ -20,8 +20,8 @@ app.config.hideDock ? app.dock.hide() : app.dock.show()
 require('electron-debug')();
 
 // prevent window being garbage collected
-let mainWindow;
-let shown = true;
+var mainWindow;
+var shown = true;
 
 function onClosed() {
 	// dereference the window
@@ -32,7 +32,7 @@ function onClosed() {
 }
 
 function createMainWindow() {
-	const win = new electron.BrowserWindow({
+	var win = new electron.BrowserWindow({
 		width: 290,
 		height: 460,
     titleBarStyle: 'hidden-inset',
@@ -44,27 +44,27 @@ function createMainWindow() {
 	return win;
 }
 
-app.on('window-all-closed', () => {
+app.on('window-all-closed', function () {
 	if (process.platform !== 'darwin') {
 		app.quit();
 	}
 });
 
-app.on('browser-window-blur', () => {
+app.on('browser-window-blur', function () {
   shown = false;
 })
 
-app.on('activate', () => {
+app.on('activate', function () {
 	if (!mainWindow) {
 		mainWindow = createMainWindow();
 	}
 });
 
-app.on('ready', () => {
+app.on('ready', function () {
 	mainWindow = createMainWindow();
-  let shortcut
+  var shortcut
   if (app.config.globalShortcut) {
-    shortcut = electron.globalShortcut.register(app.config.globalShortcut, () => {
+    shortcut = electron.globalShortcut.register(app.config.globalShortcut, function () {
       if (shown) {
         app.hide();
         shown = false

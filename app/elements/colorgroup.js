@@ -1,14 +1,10 @@
-const bel = require('bel')
-const colorTile = require('./colortile')
+var bel = require('bel')
+var colorTile = require('./colortile')
 
-const colorGroup = (item, editable) => {
-  editable = editable || false
-
+function colorGroup (item) {
   return bel`
-    <div class="flex  items-center">
-      <h1
-        class="f4 mb1 w-90"
-        contenteditable=${editable}>
+    <div class="flex items-center">
+      <h1 class="f4 fw6 mb1 w-90 truncate">
         ${item}
       </h1>
     </div>
