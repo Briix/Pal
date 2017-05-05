@@ -14,7 +14,8 @@
     "test": "xo",
     "start": "npm run build:bundle && electron .",
     "build": "npm run build:bundle && electron-packager . --out=dist --platform=darwin --overwrite --asar",
-    "build:bundle": "browserify -t sheetify/transform --node app/root.js -o bundle.js"
+    "build:bundle": "browserify -t sheetify/transform --node app/root.js -o bundle.js",
+    "build:watch": "watch 'npm run build:bundle' ./app/"
   },
   "keywords": [
     "electron-app",
