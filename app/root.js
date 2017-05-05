@@ -1,5 +1,4 @@
 var choo = require('choo')
-var html = require('choo/html')
 var sf = require('sheetify')
 var app = choo()
 

@@ -1,5 +1,4 @@
 var bel = require('bel')
-var colorTile = require('./colortile')
 
 function colorGroup (item) {
   return bel`

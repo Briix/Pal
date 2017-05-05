@@ -6,11 +6,11 @@ var cfgPath = path.resolve(os.homedir(), '.pal')
 var cfg = {}
 
 function requireJSON (filePath) {
-  return JSON.parse(fs.readFileSync(filePath, "utf8"))
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'))
 }
 
 function configExists (filePath) {
-	return fs.existsSync(filePath)
+  return fs.existsSync(filePath)
 }
 
 function load (str) {
@@ -21,15 +21,15 @@ function load (str) {
 }
 
 exports.init = function () {
-	if (configExists(cfgPath)) {
-		try {
-			load(cfgPath)
-		} catch (err) {
-			console.log(err)
-		}
-	} else {
+  if (configExists(cfgPath)) {
     try {
-    	var defaultConfig = path.resolve(__dirname, 'default-config.js')
+      load(cfgPath)
+    } catch (err) {
+      console.log(err)
+    }
+  } else {
+    try {
+      var defaultConfig = path.resolve(__dirname, 'default-config.js')
       console.log('attempting to write default config to', cfgPath)
       load(defaultConfig)
       fs.writeFileSync(cfgPath, fs.readFileSync(defaultConfig))
@@ -37,7 +37,7 @@ exports.init = function () {
       console.log(err)
       throw new Error(`Failed to write config to ${cfgPath}`)
     }
-	}
+  }
 }
 
 exports.getConfig = function () {

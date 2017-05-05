@@ -1,6 +1,5 @@
 var bel = require('bel')
 var sf = require('sheetify')
-var colorGroup = require('./colorgroup')
 
 var navStyle = sf`
   :host {

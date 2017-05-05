@@ -1,13 +1,13 @@
-'use strict';
-var electron = require('electron');
+'use strict'
+var electron = require('electron')
 
-var app = electron.app;
+var app = electron.app
 var config = require('./config')
 
 config.init()
 
 var defaultConfig = {
-	hideDock: false
+  hideDock: false
 }
 
 app.config = config.getConfig() || defaultConfig
@@ -17,65 +17,64 @@ global.configFn = config
 app.config.hideDock ? app.dock.hide() : app.dock.show()
 
 // adds debug features like hotkeys for triggering dev tools and reload
-require('electron-debug')();
+require('electron-debug')()
 
 // prevent window being garbage collected
-var mainWindow;
-var shown = true;
+var mainWindow
+var shown = true
 
-function onClosed() {
-	// dereference the window
-	// for multiple windows store them in an array
-	mainWindow = null;
-  app.hide();
-  shown = false;
+function onClosed () {
+  // dereference the window
+  // for multiple windows store them in an array
+  mainWindow = null
+  app.hide()
+  shown = false
 }
 
-function createMainWindow() {
-	var win = new electron.BrowserWindow({
-		width: 290,
-		height: 460,
-    titleBarStyle: 'hidden-inset',
-	});
+function createMainWindow () {
+  var win = new electron.BrowserWindow({
+    width: 290,
+    height: 460,
+    titleBarStyle: 'hidden-inset'
+  })
 
-	win.loadURL(`file://${__dirname}/index.html`);
-	win.on('closed', onClosed);
+  win.loadURL(`file://${__dirname}/index.html`)
+  win.on('closed', onClosed)
 
-	return win;
+  return win
 }
 
 app.on('window-all-closed', function () {
-	if (process.platform !== 'darwin') {
-		app.quit();
-	}
-});
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
 
 app.on('browser-window-blur', function () {
-  shown = false;
+  shown = false
 })
 
 app.on('activate', function () {
-	if (!mainWindow) {
-		mainWindow = createMainWindow();
-	}
-});
+  if (!mainWindow) {
+    mainWindow = createMainWindow()
+  }
+})
 
 app.on('ready', function () {
-	mainWindow = createMainWindow();
-  var shortcut
+  mainWindow = createMainWindow()
   if (app.config.globalShortcut) {
-    shortcut = electron.globalShortcut.register(app.config.globalShortcut, function () {
+    electron.globalShortcut.register(app.config.globalShortcut, function () {
       if (shown) {
-        app.hide();
+        app.hide()
         shown = false
       } else {
         if (!mainWindow) {
-          mainWindow = createMainWindow();
+          mainWindow = createMainWindow()
         } else {
-          mainWindow.show();
+          mainWindow.show()
         }
         shown = true
       }
     })
   }
-});
+})
