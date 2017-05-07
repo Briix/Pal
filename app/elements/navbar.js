@@ -14,7 +14,7 @@ function navbar (config) {
     <nav
       class="${navStyle} top-0 tc flex items-center justify-center w-100 fixed z-9999"
       style="background-color:${config.backgroundColor}">
-      <span class="f6">Colors</span>
+      <span class="f6">Pal</span>
     </nav>
   `
 }
