@@ -15,7 +15,8 @@
     "start": "npm run build:bundle && electron .",
     "build": "npm run build:bundle && electron-packager . --out=dist --platform=darwin --overwrite --asar",
     "build:bundle": "browserify -t sheetify/transform --node app/root.js -o bundle.js",
-    "build:watch": "watch 'npm run build:bundle' ./app/"
+    "build:watch": "watch 'npm run build:bundle' ./app/",
+    "build:mac": "electron-packager . --overwrite --asar --out=dist --platform=darwin --app-version=${npm_package_version} && cd dist/Pal-darwin-x64 && zip -ryXq9 ../Pal-macOS-${npm_package_version}.zip Pal.app"
   },
   "keywords": [
     "electron-app",
