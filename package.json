@@ -19,7 +19,11 @@
   },
   "keywords": [
     "electron-app",
-    "electron"
+    "electron",
+    "color",
+    "management",
+    "palette",
+    "app"
   ],
   "dependencies": {
     "electron-debug": "^1.0.0"
