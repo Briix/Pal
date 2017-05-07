@@ -6,29 +6,20 @@ var config = require('./config')
 
 config.init()
 
-var defaultConfig = {
-  hideDock: false
-}
-
-app.config = config.getConfig() || defaultConfig
+app.config = config.getConfig()
 global.config = app.config
 global.configFn = config
-
-app.config.hideDock ? app.dock.hide() : app.dock.show()
 
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')()
 
 // prevent window being garbage collected
 var mainWindow
-var shown = true
 
 function onClosed () {
   // dereference the window
   // for multiple windows store them in an array
   mainWindow = null
-  app.hide()
-  shown = false
 }
 
 function createMainWindow () {
@@ -50,10 +41,6 @@ app.on('window-all-closed', function () {
   }
 })
 
-app.on('browser-window-blur', function () {
-  shown = false
-})
-
 app.on('activate', function () {
   if (!mainWindow) {
     mainWindow = createMainWindow()
@@ -62,19 +49,4 @@ app.on('activate', function () {
 
 app.on('ready', function () {
   mainWindow = createMainWindow()
-  if (app.config.globalShortcut) {
-    electron.globalShortcut.register(app.config.globalShortcut, function () {
-      if (shown) {
-        app.hide()
-        shown = false
-      } else {
-        if (!mainWindow) {
-          mainWindow = createMainWindow()
-        } else {
-          mainWindow.show()
-        }
-        shown = true
-      }
-    })
-  }
 })
