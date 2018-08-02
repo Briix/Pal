@@ -13,12 +13,12 @@ global.configFn = config
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')()
 
-// prevent window being garbage collected
+// prevent window from being garbage collected
 var mainWindow
 
 function onClosed () {
-  // dereference the window
-  // for multiple windows store them in an array
+  // de-reference the window
+  // to store multiple windows in an array
   mainWindow = null
 }
 

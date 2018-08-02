@@ -3,7 +3,7 @@
 > :art: Tiny app for managing color palettes
 
 Pal aims to be a simple and customizable color palette manager/viewer and does exactly and
-only that. On first runs it creates a dotfile in your home directory that will
+only that. On first run it creates a dotfile in your home directory that will
 hold both your settings and your color palettes.
 
 For now colors can only be added directly in the dotfile.
@@ -11,8 +11,8 @@ For now colors can only be added directly in the dotfile.
 [Read more about the settings](#user-content-settings).
 
 ## Downloads
-Pal currently only runs on macOS and prebuilt binaries can be found on the
-[relases page](https://github.com/Briix/Pal/releases/).
+Pal currently only runs on macOS and pre-built binaries can be found on the
+[releases page](https://github.com/Briix/Pal/releases/).
 
 If you want to build the app yourself or try it out on other platforms,
 checkout the [development section](#user-content-dev).
